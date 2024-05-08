@@ -18,6 +18,15 @@
             hashtree = hashtree;
             intx = intx;
           });
+          # The "all" package will build all packages. Convenient for CI,
+          # so that "nix build" will check that all packages are correct.
+          # The packages that have no changes will not be rebuilt, and instead
+          # fetched from the cache.
+          all = pkgs.symlinkJoin {
+            name = "all";
+            paths = [ intx hashtree sszpp ];
+          };
+          default = all;
         };
 
         overlays.default = final: prev: packages;
