@@ -20,6 +20,10 @@ stdenv.mkDerivation rec {
       hash = "sha256-DHoFX8mbn4QKGj5Ch6R87swsoqXUXDweGL2KYjRVZEg=";
     };
 
+  patches = [
+    ./hashtree-execstack-fix.diff
+  ];
+
   outputs = [ "out" ];
 
   env.NIX_CFLAGS_COMPILE = lib.optionalString stdenv.cc.isClang "-no-integrated-as -std=c2x";
