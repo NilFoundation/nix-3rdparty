@@ -18,13 +18,14 @@
             hashtree = hashtree;
             intx = intx;
           });
+          evmc = (pkgs.callPackage ./nix/evmc/evmc.nix { });
           # The "all" package will build all packages. Convenient for CI,
           # so that "nix build" will check that all packages are correct.
           # The packages that have no changes will not be rebuilt, and instead
           # fetched from the cache.
           all = pkgs.symlinkJoin {
             name = "all";
-            paths = [ intx hashtree sszpp ];
+            paths = [ intx hashtree sszpp evmc ];
           };
           default = all;
         };
