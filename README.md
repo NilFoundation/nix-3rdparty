@@ -17,7 +17,7 @@ To use this flake, add it to your flake inputs:
     (flake-utils.lib.eachDefaultSystem (system:
       let pkgs = import nixpkgs {
         inherit system;
-        overlays = [ nix-3rdparty.overlays.default ];
+        overlays = [ nix-3rdparty.overlays.${system}.default ];
       };
       ...
 }
