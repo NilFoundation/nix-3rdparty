@@ -3,6 +3,7 @@
 , fetchFromGitHub
 , fetchpatch
 , automake
+, enableDebug ? false
 }:
 
 let
@@ -29,7 +30,7 @@ stdenv.mkDerivation rec {
   env.NIX_CFLAGS_COMPILE = lib.optionalString stdenv.cc.isClang "-no-integrated-as -std=c2x";
 
   doCheck = true;
-  dontStrip = true;
+  dontStrip = enableDebug;
 
   nativeBuildInputs = [
     automake
