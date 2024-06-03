@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchFromGitHub, pkgs }:
+{ lib, stdenv, fetchFromGitHub, pkgs, enableDebug ? false }:
 
 stdenv.mkDerivation rec {
   name = "intx";
@@ -12,6 +12,8 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ pkgs.cmake ];
+
+  cmakeBuildType = if enableDebug then "Debug" else "Release";
 
   cmakeFlags = [ "-DINTX_TESTING=OFF" ];
 }

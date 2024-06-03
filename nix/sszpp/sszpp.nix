@@ -5,6 +5,7 @@
 , cmake
 , intx
 , hashtree
+, enableDebug ? false
 }:
 
 let
@@ -24,12 +25,13 @@ stdenv.mkDerivation rec {
   outputs = [ "out" ];
 
   doCheck = true;
-  dontStrip = true;
   env.NIX_CFLAGS_COMPILE = "-Wno-error=format-security -Wno-defaulted-function-deleted -Wno-unneeded-internal-declaration -Wno-logical-op-parentheses";
 
   cmakeFlags = [
     "-DCMAKE_CXX_STANDARD=23"
   ];
+
+  cmakeBuildType = if enableDebug then "Debug" else "Release";
 
   patches = [
     ./sszpp-merkleize-remove.patch
@@ -40,8 +42,8 @@ stdenv.mkDerivation rec {
   ];
 
   propagatedBuildInputs = [
-    intx
-    hashtree
+    (intx.override { inherit enableDebug; })
+    (hashtree.override { inherit enableDebug; })
   ];
 
   meta = with lib; {

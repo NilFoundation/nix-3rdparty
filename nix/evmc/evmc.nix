@@ -1,4 +1,4 @@
-{ pkgs, stdenv, fetchFromGitHub }:
+{ pkgs, stdenv, fetchFromGitHub, enableDebug ? true }:
 
 stdenv.mkDerivation rec {
   name = "evmc";
@@ -12,10 +12,8 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ pkgs.cmake ];
 
-  cmakeFlags = [
-    "-DEVMC_TOOLS=FALSE"
-  ];
+  cmakeBuildType = if enableDebug then "Debug" else "Release";
 
   doCheck = true;
-  dontStrip = true;
+  dontStrip = enableDebug;
 }
