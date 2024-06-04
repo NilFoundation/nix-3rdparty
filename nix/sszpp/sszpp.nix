@@ -15,11 +15,13 @@ in
 stdenv.mkDerivation rec {
   name = "sszpp";
 
+  # We use our fork of SSZ++ until required changes are going to be merged.
+  # See: https://github.com/OffchainLabs/sszpp/pull/3
   src = fetchFromGitHub {
-      owner = "OffchainLabs";
+      owner = "NilFoundation";
       repo = "sszpp";
-      rev = "ec97d8976d7f0a78eccbf59cab59eae4cf508ca9";
-      hash = "sha256-310yiR02zAQ9v6TIdOYDuS7lVQJRhAeIEzaeVEGnMDA=";
+      rev = "bac94fb2888c5e0ca98c88a3490dbd2c5feb5ce5";
+      hash = "sha256-/FAae1maWI6fPsyNtaiUK52VnW+mwh/FOnC4G0+uCHI=";
     };
 
   outputs = [ "out" ];
