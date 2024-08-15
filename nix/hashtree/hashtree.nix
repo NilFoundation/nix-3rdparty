@@ -12,13 +12,13 @@ in
 
 stdenv.mkDerivation rec {
   name = "hashtree";
-  version = "0.1.0";
+  version = "0.2.0";
 
   src = fetchFromGitHub {
       owner = "prysmaticlabs";
       repo = "hashtree";
       rev = "v${version}";
-      hash = "sha256-DHoFX8mbn4QKGj5Ch6R87swsoqXUXDweGL2KYjRVZEg=";
+      hash = "sha256-h+Jh1/Ne35rt5rBm/FADz27VAsTIXNmZfnvhk+rsCjw=";
     };
 
   patches = [
